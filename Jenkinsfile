@@ -1,7 +1,5 @@
 properties([
   parameters([
-    string(name: 'path_to_file', defaultValue: '$WORKSPACE/target/', description: ''),
-    string(name: 'file_name', defaultValue: 'samplecode-1.0.0.jar', description: ''),
     string(name: 'remote_dir_path', defaultValue: '', description: 'enter the path to save file'),
    ])
 ])
@@ -36,9 +34,10 @@ pipeline  {
         stage('SSH transfer') {
             steps {
                 script {
-			sh 'ssh user@server rm -rf /appli/code/'
-			sh 'ssh user@server mkdir -p /appli/code/'
-			sh 'scp -r samplecode-1.0.0.jar user@server:/appli/code/'
+			sh 'ssh user@server rm -rf ${remote_dir_path}'
+			sh 'ssh user@server mkdir -p ${remote_dir_path}'
+			sh 'cd $WORKSPACE/target/'
+			sh 'scp -r samplecode-1.0.0.jar user@server:${remote_dir_path}'
 		}
 	    }
 	}
