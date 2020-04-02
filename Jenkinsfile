@@ -36,8 +36,8 @@ pipeline  {
                 script {
 			sh 'cd $WORKSPACE/target/'
 			sh 'ls -ltr'
-			sh 'mv Jenkinsfile `date +"%d-%m-%Y-%H.%M"`Jenkinsfile'
-			sh 'scp -r * user@server:${remote_dir_path}'
+			sh 'mv Jenkinsfile `date +"%d-%m-%Y-%H.%M"`_Jenkinsfile'
+			sh 'scp -r *_Jenkinsfile user@server:${remote_dir_path}'
 		}
 	    }
 	}
