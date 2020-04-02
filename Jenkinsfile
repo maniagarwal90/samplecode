@@ -35,7 +35,8 @@ pipeline  {
             steps {
                 script {
 			sh 'cd $WORKSPACE/target/'
-			sh 'scp -r samplecode-1.0.0.jar user@server:${remote_dir_path}'
+			sh 'mv samplecode-1.0.0.jar `date +"%d-%m-%Y-%H.%M"`samplecode-1.0.0.jar'
+			sh 'scp -r * user@server:${remote_dir_path}'
 		}
 	    }
 	}
