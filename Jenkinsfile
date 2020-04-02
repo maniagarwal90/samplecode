@@ -7,7 +7,7 @@ properties([
 pipeline  {
     agent any
 	tools {
-		maven "Maven-3.5.4"
+		maven "Maven 3.5.4"
 	}
     options {
         buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '5', numToKeepStr: '5')
