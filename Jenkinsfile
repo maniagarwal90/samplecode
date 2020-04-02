@@ -6,6 +6,8 @@ properties([
 
 pipeline  {
     agent any
+	tools {
+		maven "Maven-3.5.4"
     options {
         buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '5', numToKeepStr: '5')
     }
@@ -26,7 +28,7 @@ pipeline  {
 			    script {
 				echo "Build BRE CMDB for cc${params['CLIENT_SITE']}-${params['CLIENT_ID']}-${params['CLIENT_CLUSTERID']}-*-${params['CLIENT_ENV']}"
 				rtMaven.tool = 'Maven 3.5.4'
-				    sh "'${mvnHome}/bin/mvn' clean deploy"
+				    rtMaven.run goals: 'clean deploy'
 			    }
 		    }
 		}
