@@ -27,12 +27,29 @@ pipeline  {
 		stage("Build and Publish") {
 		    steps {
 			    script {
-				echo "Build BRE CMDB for cc${params['CLIENT_SITE']}-${params['CLIENT_ID']}-${params['CLIENT_CLUSTERID']}-*-${params['CLIENT_ENV']}"
-				    sh "mvn clean deploy"
+				    sh "mvn clean install"
 			    }
 		    }
 		}
-
+stage('SSH transfer') {
+ script {
+  sshPublisher(
+   continueOnError: false, failOnError: true,
+   publishers: [
+    sshPublisherDesc(
+     configName: "${env.SSH_CONFIG_NAME}",
+     verbose: true,
+     transfers: [
+      sshTransfer(
+       sourceFiles: "${path_to_file}/${file_name}, ${path_to_file}/${file_name}",
+       removePrefix: "${path_to_file}",
+       remoteDirectory: "${remote_dir_path}",
+       execCommand: "run commands after copy?"
+      )
+     ])
+   ])
+ }
+}
 	}
 }
 
