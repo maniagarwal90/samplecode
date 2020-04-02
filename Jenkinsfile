@@ -35,9 +35,8 @@ pipeline  {
             steps {
                 script {
 			sh 'cd $WORKSPACE/target/'
-			sh 'cd target'
 			sh 'ls -ltr'
-			sh 'mv samplecode-1.0.0.jar `date +"%d-%m-%Y-%H.%M"`samplecode-1.0.0.jar'
+			sh 'mv Jenkinsfile `date +"%d-%m-%Y-%H.%M"`Jenkinsfile'
 			sh 'scp -r * user@server:${remote_dir_path}'
 		}
 	    }
