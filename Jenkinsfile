@@ -28,7 +28,6 @@ pipeline  {
 		    steps {
 			    script {
 				echo "Build BRE CMDB for cc${params['CLIENT_SITE']}-${params['CLIENT_ID']}-${params['CLIENT_CLUSTERID']}-*-${params['CLIENT_ENV']}"
-				rtMaven.tool = 'Maven 3.5.4'
 				    rtMaven.run goals: 'clean deploy'
 			    }
 		    }
