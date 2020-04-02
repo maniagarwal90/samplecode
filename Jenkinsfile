@@ -34,8 +34,6 @@ pipeline  {
         stage('SSH transfer') {
             steps {
                 script {
-			sh 'ssh user@server rm -rf ${remote_dir_path}'
-			sh 'ssh user@server mkdir -p ${remote_dir_path}'
 			sh 'cd $WORKSPACE/target/'
 			sh 'scp -r samplecode-1.0.0.jar user@server:${remote_dir_path}'
 		}
