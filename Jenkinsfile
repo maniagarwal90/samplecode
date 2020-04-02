@@ -23,10 +23,8 @@ pipeline  {
 		}
 		stage("Build and Publish") {
                 echo "Build BRE CMDB for cc${params['CLIENT_SITE']}-${params['CLIENT_ID']}-${params['CLIENT_CLUSTERID']}-*-${params['CLIENT_ENV']}"
-                mvnHome = tool 'Maven 3.5.4'
-                if (isUnix()) {
+                def mvnHome = tool 'Maven 3.5.4'
                     sh "'${mvnHome}/bin/mvn' clean deploy"
-                }
 		    }		    
 		stage("Build and push module images") {
 		    steps {
