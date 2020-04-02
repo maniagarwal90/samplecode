@@ -27,7 +27,7 @@ pipeline  {
 		stage("Build and Publish") {
 		    steps {
 			    script {
-				    sh "mvn clean deploy"
+				    sh "mvn clean install"
 			    }
 		    }
 		}
