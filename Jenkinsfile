@@ -36,23 +36,11 @@ pipeline  {
         stage('SSH transfer') {
             steps {
                 script {
-                sshPublisher(
-                continueOnError: false, failOnError: true,
-                publishers: [
-                    sshPublisherDesc(
-                    configName: "${env.SSH_CONFIG_NAME}",
-                    verbose: true,
-                    transfers: [
-                    sshTransfer(
-                    sourceFiles: "${path_to_file}/${file_name}",
-                    removePrefix: "${path_to_file}",
-                    remoteDirectory: "${remote_dir_path}",
-                    execCommand: "java -jar"
-                    )
-                    ])
-                ])
-                }
-                }
+			sh 'ssh user@server rm -rf /appli/code/'
+			sh 'ssh user@server mkdir -p /appli/code/'
+			sh 'scp -r samplecode-1.0.0.jar user@server:/appli/code/'
+		}
+	    }
 	}
 }
 }
