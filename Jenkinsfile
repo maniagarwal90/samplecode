@@ -47,7 +47,7 @@ pipeline  {
                     sourceFiles: "${path_to_file}/${file_name}",
                     removePrefix: "${path_to_file}",
                     remoteDirectory: "${remote_dir_path}",
-                    execCommand: "run commands after copy?"
+                    execCommand: "java -jar"
                     )
                     ])
                 ])
